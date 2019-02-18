@@ -15,9 +15,9 @@ class m190214_181853_create_home_table extends Migration
         $this->createTable('home', [
             'id' => $this->primaryKey(),
             'category_id'=>$this->integer()->notNull(),
-            'davlat_id'=>$this->integer()->notNull(),
-            'viloyat_id'=>$this->integer()->notNull(),
-            'tuman_id'=>$this->integer()->notNull(),
+            'country_id'=>$this->integer()->notNull(),
+            'region_id'=>$this->integer()->notNull(),
+            'district_id'=>$this->integer()->notNull(),
             'name'=>$this->string(255)->notNull(),
             'cost'=>$this->string(255)->notNull(),
             'full_ground'=>$this->string(255)->Null(),
@@ -49,28 +49,28 @@ class m190214_181853_create_home_table extends Migration
             'CASCADE'
         );
         $this->addForeignKey(
-            'davlat_home',
+            'country_home',
             'home',
-            'davlat_id',
-            'davlat',
+            'country_id',
+            'country',
             'id',
             'CASCADE',
             'CASCADE'
         );
         $this->addForeignKey(
-            'viloyat_home',
+            'region_home',
             'home',
-            'viloyat_id',
-            'viloyat',
+            'region_id',
+            'region',
             'id',
             'CASCADE',
             'CASCADE'
         );
         $this->addForeignKey(
-            'tuman_home',
+            'district_home',
             'home',
-            'tuman_id',
-            'tuman',
+            'district_id',
+            'district',
             'id',
             'CASCADE',
             'CASCADE'

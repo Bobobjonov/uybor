@@ -5,12 +5,12 @@ namespace backend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Category;
+use backend\models\District;
 
 /**
- * CategorySearch represents the model behind the search form of `app\models\Category`.
+ * DistrictSearch represents the model behind the search form of `backend\models\District`.
  */
-class CategorySearch extends Category
+class DistrictSearch extends District
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'region_id'], 'integer'],
+            [['name', 'status'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = District::find();
 
         // add conditions that should always apply here
 
@@ -60,9 +60,11 @@ class CategorySearch extends Category
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'region_id' => $this->region_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

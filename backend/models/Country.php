@@ -5,21 +5,22 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "country".
  *
- * @property int $id
- * @property string $name
+ * @property int $id id
+ * @property string $name nomi
+ * @property string $status statsu y/n
  *
- * @property Home[] $homes
+ * @property Region[] $regions
  */
-class Category extends \yii\db\ActiveRecord
+class Country extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'category';
+        return 'country';
     }
 
     /**
@@ -29,7 +30,8 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['status'], 'string'],
+            [['name'], 'string', 'max' => 256],
         ];
     }
 
@@ -41,14 +43,15 @@ class Category extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'status' => 'Status',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getHomes()
+    public function getRegions()
     {
-        return $this->hasMany(Home::className(), ['category_id' => 'id']);
+        return $this->hasMany(Region::className(), ['country_id' => 'id']);
     }
 }

@@ -2,19 +2,17 @@
 
 namespace backend\controllers;
 
-//use GuzzleHttp\Psr7\UploadedFile;
 use Yii;
-use backend\models\Home;
-use backend\models\search\HomeSearch;
+use backend\models\Country;
+use backend\models\search\CountrySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * HomeController implements the CRUD actions for Home model.
+ * CountryController implements the CRUD actions for Country model.
  */
-class HomeController extends Controller
+class CountryController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,12 +30,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Lists all Home models.
+     * Lists all Country models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new HomeSearch();
+        $searchModel = new CountrySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +45,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Displays a single Home model.
+     * Displays a single Country model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,22 +58,15 @@ class HomeController extends Controller
     }
 
     /**
-     * Creates a new Home model.
+     * Creates a new Country model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Home();
+        $model = new Country();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->rasm =UploadedFile::getInstance($model,'rasm');
-            if($model->rasm){
-                $filename = floor(microtime(true)*1000).'.'.$model->rasm->extension;
-                $model->image=$filename;
-                $model->rasm->saveAs('uploads/'.$filename);
-            }
-            $model->save(false);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -85,7 +76,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Updates an existing Home model.
+     * Updates an existing Country model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -95,19 +86,7 @@ class HomeController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->rasm =UploadedFile::getInstance($model, 'rasm');
-
-            if(file_exists('uploads/'.$model->image) && $model->image){
-                unlink('uploads/'.$model->image);
-            }
-
-            if($model->rasm) {
-                $filename = floor(microtime(true) * 1000).'.'.$model->rasm->extension;
-                $model->image = $filename;
-                $model->rasm->saveAs('uploads/'.$filename);
-            }
-            $model->save();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -117,7 +96,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Deletes an existing Home model.
+     * Deletes an existing Country model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -131,15 +110,15 @@ class HomeController extends Controller
     }
 
     /**
-     * Finds the Home model based on its primary key value.
+     * Finds the Country model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Home the loaded model
+     * @return Country the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Home::findOne($id)) !== null) {
+        if (($model = Country::findOne($id)) !== null) {
             return $model;
         }
 

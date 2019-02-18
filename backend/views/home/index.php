@@ -27,22 +27,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'id',
 //            'category_id',
+
             [
                 'attribute' => 'category_id',
-                'value' => function($model) {
-                    $data = \app\models\Category::findOne(['id' => $model->category_id]);
-                    return $data->name;
-                }
+                'value'=>'category.name',
+                'filter'=>\yii\helpers\ArrayHelper::map(\backend\models\Category::find()->all(),'id','name')
             ],
-//            'davlat_id',
-//            'viloyat_id',
-//            'tuman_id',
+//            'country_id',
+//            'region_id',
+//            'district_id',
             [
-                'attribute' => 'tuman_id',
-                'value' => function($model) {
-                    $data = \app\models\Tuman::findOne(['id' => $model->tuman_id]);
-                    return $data->name;
-                }
+                'attribute' => 'district_id',
+                'value' => 'district.name',
+                'filter'=>\yii\helpers\ArrayHelper::map(\backend\models\District::find()->all(),'id','name')
             ],
             //'name',
             'cost',

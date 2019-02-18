@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -56,14 +56,14 @@ class Home extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'davlat_id', 'viloyat_id', 'tuman_id', 'name', 'cost', 'live_ground', 'room_id', 'build_product', 'status_home', 'description', 'tell', 'video_cam', 'cable', 'tv', 'muzlatgich', 'candinsaner', 'fio', 'm_tel', 'm_email'], 'required'],
-            [['category_id', 'davlat_id', 'viloyat_id', 'tuman_id', 'room_id', 'floor_id', 'full_floor', 'tell', 'video_cam', 'cable', 'tv', 'muzlatgich', 'candinsaner'], 'integer'],
+            [['category_id', 'country_id', 'region_id', 'district_id', 'name', 'cost', 'live_ground', 'room_id', 'build_product', 'status_home', 'description', 'tell', 'video_cam', 'cable', 'tv', 'muzlatgich', 'candinsaner', 'fio', 'm_tel', 'm_email'], 'required'],
+            [['category_id', 'country_id', 'region_id', 'district_id', 'room_id', 'floor_id', 'full_floor', 'tell', 'video_cam', 'cable', 'tv', 'muzlatgich', 'candinsaner'], 'integer'],
             [['description'], 'string'],
             [['name', 'cost', 'full_ground', 'live_ground', 'build_product', 'status_home', 'fio', 'm_tel', 'm_email', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
-            [['davlat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Davlat::className(), 'targetAttribute' => ['davlat_id' => 'id']],
-            [['tuman_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tuman::className(), 'targetAttribute' => ['tuman_id' => 'id']],
-            [['viloyat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Viloyat::className(), 'targetAttribute' => ['viloyat_id' => 'id']],
+            [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['country_id' => 'id']],
+            [['district_id'], 'exist', 'skipOnError' => true, 'targetClass' => District::className(), 'targetAttribute' => ['district_id' => 'id']],
+            [['region_id'], 'exist', 'skipOnError' => true, 'targetClass' => Region::className(), 'targetAttribute' => ['region_id' => 'id']],
             [['image'],'file','extensions'=>['jpeg','jpg','png','gif']]
             ];
     }
@@ -76,9 +76,9 @@ class Home extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'category_id' => 'Category ID',
-            'davlat_id' => 'Davlat ID',
-            'viloyat_id' => 'Viloyat ID',
-            'tuman_id' => 'Tuman ID',
+            'country_id' => 'Country ID',
+            'region_id' => 'Region ID',
+            'district_id' => 'District ID',
             'name' => 'Name',
             'cost' => 'Cost',
             'full_ground' => 'Full Ground',
@@ -113,24 +113,24 @@ class Home extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDavlat()
+    public function getCountry()
     {
-        return $this->hasOne(Davlat::className(), ['id' => 'davlat_id']);
+        return $this->hasOne(Country::className(), ['id' => 'country_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTuman()
+    public function getDistrict()
     {
-        return $this->hasOne(Tuman::className(), ['id' => 'tuman_id']);
+        return $this->hasOne(District::className(), ['id' => 'district_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getViloyat()
+    public function getRegion()
     {
-        return $this->hasOne(Viloyat::className(), ['id' => 'viloyat_id']);
+        return $this->hasOne(Region::className(), ['id' => 'region_id']);
     }
 }

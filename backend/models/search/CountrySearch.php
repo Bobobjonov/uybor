@@ -5,12 +5,12 @@ namespace backend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Category;
+use backend\models\Country;
 
 /**
- * CategorySearch represents the model behind the search form of `app\models\Category`.
+ * CountrySearch represents the model behind the search form of `backend\models\Country`.
  */
-class CategorySearch extends Category
+class CountrySearch extends Country
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class CategorySearch extends Category
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'status'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = Country::find();
 
         // add conditions that should always apply here
 
@@ -62,7 +62,8 @@ class CategorySearch extends Category
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

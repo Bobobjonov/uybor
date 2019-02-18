@@ -5,7 +5,7 @@ namespace backend\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Home;
+use backend\models\Home;
 
 /**
  * HomeSearch represents the model behind the search form of `app\models\Home`.
@@ -18,7 +18,7 @@ class HomeSearch extends Home
     public function rules()
     {
         return [
-            [['id', 'category_id', 'davlat_id', 'viloyat_id', 'tuman_id', 'room_id', 'floor_id', 'full_floor', 'tell', 'video_cam', 'cable', 'tv', 'muzlatgich', 'candinsaner'], 'integer'],
+            [['id', 'category_id', 'country_id', 'region_id', 'district_id', 'room_id', 'floor_id', 'full_floor', 'tell', 'video_cam', 'cable', 'tv', 'muzlatgich', 'candinsaner'], 'integer'],
             [['name', 'cost', 'full_ground', 'live_ground', 'build_product', 'status_home', 'description', 'fio', 'm_tel', 'm_email', 'image'], 'safe'],
         ];
     }
@@ -61,9 +61,9 @@ class HomeSearch extends Home
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
-            'davlat_id' => $this->davlat_id,
-            'viloyat_id' => $this->viloyat_id,
-            'tuman_id' => $this->tuman_id,
+            'country_id' => $this->country_id,
+            'region_id' => $this->region_id,
+            'district_id' => $this->district_id,
             'room_id' => $this->room_id,
             'floor_id' => $this->floor_id,
             'full_floor' => $this->full_floor,

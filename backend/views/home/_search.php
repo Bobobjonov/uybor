@@ -19,9 +19,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'category_id') ?>
 
-    <?= $form->field($model, 'davlat_id') ?>
+    <?= $form->field($model, 'country_id') ?>
 
-    <?= $form->field($model, 'viloyat_id') ?>
+    <?= $form->field($model, 'region_id') ?>
 
     <?= $form->field($model, 'tuman_id') ?>
 

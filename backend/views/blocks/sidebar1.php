@@ -5,7 +5,7 @@ $url = Yii::$app->homeUrl.'backend/';
     <div style="background-color: black; color: white" id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="profile.html"><img src="<?= $url?>assets/img/logo.svg" class="img" height="40" width="190"></a></p>
+            <p class="centered"><a href="profile.html"><img src="<?= $url?>assets/img/logo2.jpg" class="img" ></a></p>
                 <?php $controller= Yii::$app->controller->id; ?>
             <li class="mt">
                 <a class="<?=($controller=='')?'active':''?>" href="<?= \yii\helpers\Url::to('/site/') ?>">
@@ -27,21 +27,21 @@ $url = Yii::$app->homeUrl.'backend/';
                 </a>
             </li>
             <li class="sub-menu">
-                <a class="<?=($controller=='davlat')?'active':''?>" href="<?=\yii\helpers\Url::to(['davlat/'])?>" >
+                <a class="<?=($controller=='country')?'active':''?>" href="<?=\yii\helpers\Url::to(['country/'])?>" >
                     <i class="fa fa-map"></i>
-                    <span>Davlat</span>
+                    <span>Country</span>
                 </a>
             </li>
             <li class="sub-menu">
-                <a class="<?=($controller=='viloyat')?'active':''?>" href="<?=\yii\helpers\Url::to(['viloyat/'])?>" >
+                <a class="<?=($controller=='region')?'active':''?>" href="<?=\yii\helpers\Url::to(['region/'])?>" >
                     <i class="fa fa-map-marker"></i>
-                    <span>Viloyat</span>
+                    <span>Region</span>
                 </a>
             </li>
             <li class="sub-menu">
-                <a class="<?=($controller=='tuman')?'active':''?>" href="<?=\yii\helpers\Url::to(['tuman/'])?>" >
+                <a class="<?=($controller=='district')?'active':''?>" href="<?=\yii\helpers\Url::to(['district/'])?>" >
                     <i class="fa fa-flag"></i>
-                    <span>Tuman</span>
+                    <span>District</span>
                 </a>
             </li>
 

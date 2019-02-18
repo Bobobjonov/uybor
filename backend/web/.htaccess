@@ -5,8 +5,8 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Otherwise forward the request to index.php
+# Otherwise forward the request to test.php
 RewriteRule . index.php
 
-# use index.php as index file
+# use test.php as index file
 DirectoryIndex index.php
